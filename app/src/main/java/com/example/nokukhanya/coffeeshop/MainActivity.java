@@ -1,5 +1,6 @@
 package com.example.nokukhanya.coffeeshop;
 
+import android.content.Intent;
 import android.renderscript.Double2;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,32 +15,61 @@ import static android.R.attr.x;
 import static android.R.id.edit;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 import static android.webkit.ConsoleMessage.MessageLevel.LOG;
-import static com.example.nokukhanya.coffeeshop.R.id.clear;
 import static com.example.nokukhanya.coffeeshop.R.id.exit;
 import static com.example.nokukhanya.coffeeshop.R.id.total;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private CheckBox chkIced;
-    private CheckBox chkCappucinno;
-    private CheckBox chkBottomless;
-    private CheckBox chkBrewed;
+    static CheckBox chkIced;
+    static CheckBox chkCappucinno;
+    static CheckBox chkBottomless;
+    static CheckBox chkBrewed;
 
-    private Button btnTotal;
+    static Button btnTotal;
     private Button btnClear;
     private Button btnExit;
 
-    private TextView txtTotal;
 
-    private EditText EDiced;
-    private EditText EDcappucinno;
-    private EditText EDbottomless;
-    private EditText EDbrewed;
+    static TextView txtTotal;
+
+    static EditText EDiced;
+    static EditText EDcappucinno;
+    static EditText EDbottomless;
+    static EditText EDbrewed;
+
+    //EditText for toppings
+    static EditText editIced;
+    static EditText editCuppuccino;
+    static EditText editBottomless;
+    static EditText editBrewed;
+
+    public static  final String DATA="data";
+    public static final String ICEDDETAILS="iced";
+    public static final String CUPPUCINNODETAILS="Cappucinno";
+    public static final String BOTTOMLESSDETAILS="Bottomless";
+    public static final String BREWEDDETAILS ="Brewed";
+
+    Double totalAMT = 0.0;
+
+    int quan=0;
 
     int IcedCoffee = 45;
     int Cuppucinno = 40;
     int BottomlessCoffee = 30;
     int BrewedCoffee = 35;
+
+
+
+    String iceddetails;
+    String CappucinnoDetails;
+    String BottomlessDetails;
+    String BrewedDetails;
+
+    String toppingIced;
+    String toppingCuppucinno;
+    String toppingBottomless;
+    String toppingBrewed;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,151 +81,141 @@ public class MainActivity extends AppCompatActivity {
         chkBottomless = (CheckBox) findViewById(R.id.checkBox3);
         chkBrewed = (CheckBox) findViewById(R.id.checkBox4);
 
-        btnTotal = (Button) findViewById(total);
-        btnClear = (Button) findViewById(clear);
-        btnExit = (Button) findViewById(exit);
+        btnTotal = (Button) findViewById(R.id.total);
+        btnTotal.setOnClickListener(this);
 
+        btnExit = (Button) findViewById(exit);
 
         EDiced = (EditText) findViewById(R.id.editText1);
         EDcappucinno = (EditText) findViewById(R.id.editText5);
         EDbottomless = (EditText) findViewById(R.id.editText6);
         EDbrewed = (EditText) findViewById(R.id.ediText4);
 
+        editIced = (EditText) findViewById(R.id.editText);
+        editCuppuccino = (EditText) findViewById(R.id.editText4);
+        editBottomless = (EditText) findViewById(R.id.editText7);
+        editBrewed = (EditText) findViewById(R.id.editText3);
+
 
         txtTotal = (TextView) findViewById(R.id.textView13);
 
-
-        btnTotal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Double total = 0.0;
-
-                //checkBox for Iced Coffee
-
-                if (chkIced.isChecked()) {
-                    total = Double.valueOf(EDiced.getText().toString());
-                    txtTotal.setText("R" + Double.toString(total * IcedCoffee));
-
-                    if (chkIced.isChecked() && chkCappucinno.isChecked()) {
-                        Double x = Double.valueOf(EDiced.getText().toString()) * IcedCoffee;
-                        Double y = Double.valueOf(EDcappucinno.getText().toString()) * Cuppucinno;
-                        total = x + y;
-                        txtTotal.setText("R" + Double.toString(total));
-
-                    }
-                    if (chkIced.isChecked() && chkBottomless.isChecked()) {
-                        Double x = Double.valueOf(EDiced.getText().toString()) * IcedCoffee;
-                        Double y = Double.valueOf(EDbottomless.getText().toString()) * BottomlessCoffee;
-                        total = x + y;
-                        txtTotal.setText("R" + Double.toString(total));
-                    }
-                    if (chkIced.isChecked() && chkBrewed.isChecked()) {
-                        Double x = Double.valueOf(EDiced.getText().toString()) * IcedCoffee;
-                        Double y = Double.valueOf(EDbrewed.getText().toString()) * BrewedCoffee;
-                        total = x + y;
-                        txtTotal.setText("R" + Double.toString(total));
-                    }
-                    // if 3 checkboxes are checked
-                    if (chkIced.isChecked() && chkBrewed.isChecked() && chkBottomless.isChecked()) {
-                        Double x = Double.valueOf(EDiced.getText().toString()) * IcedCoffee;
-                        Double y = Double.valueOf(EDbrewed.getText().toString()) * BrewedCoffee;
-                        Double z = Double.valueOf(EDbottomless.getText().toString()) * BottomlessCoffee;
-                        total = x + y + z;
-                        txtTotal.setText("R" + Double.toString(total));
-                    }
-                    if (chkIced.isChecked() && chkBrewed.isChecked() && chkCappucinno.isChecked()) {
-                        Double x = Double.valueOf(EDiced.getText().toString()) * IcedCoffee;
-                        Double y = Double.valueOf(EDbrewed.getText().toString()) * BrewedCoffee;
-                        Double z = Double.valueOf(EDcappucinno.getText().toString()) * Cuppucinno;
-                        total = x + y + z;
-                        txtTotal.setText("R" + Double.toString(total));
-                    }
-                    if (chkCappucinno.isChecked() && chkBrewed.isChecked() && chkBottomless.isChecked()) {
-                        Double x = Double.valueOf(EDcappucinno.getText().toString()) * Cuppucinno;
-                        Double y = Double.valueOf(EDbrewed.getText().toString()) * BrewedCoffee;
-                        Double z = Double.valueOf(EDbottomless.getText().toString()) * BottomlessCoffee;
-                        total = x + y + z;
-                        txtTotal.setText("R" + Double.toString(total));
-                    }
-
-                    //checkBox for Cappucinno
-                }
-                if (chkCappucinno.isChecked()) {
-                    total = Double.valueOf(EDcappucinno.getText().toString());
-                    txtTotal.setText("R" + Double.toString(total * Cuppucinno));
-
-                    if (chkCappucinno.isChecked() && chkBrewed.isChecked()) {
-                        Double x = Double.valueOf(EDcappucinno.getText().toString()) * Cuppucinno;
-                        Double y = Double.valueOf(EDbrewed.getText().toString()) * BrewedCoffee;
-                        total = x + y;
-                        txtTotal.setText("R" + Double.toString(total));
-
-                    }
-                    if (chkCappucinno.isChecked() && chkBottomless.isChecked()) {
-                        Double x = Double.valueOf(EDcappucinno.getText().toString()) * Cuppucinno;
-                        Double y = Double.valueOf(EDbottomless.getText().toString()) * BottomlessCoffee;
-                        total = x + y;
-                        txtTotal.setText("R" + Double.toString(total));
-
-                    }
-
-                    //checkBox for Iced Bottomless Coffee
-
-                }
-                if (chkBottomless.isChecked()) {
-                    total = Double.parseDouble(EDbottomless.getText().toString());
-                    txtTotal.setText("R" + Double.toString(total * BottomlessCoffee));
-
-                    if (chkBottomless.isChecked() && chkBrewed.isChecked()) {
-                        Double x = Double.valueOf(EDbottomless.getText().toString()) * BottomlessCoffee;
-                        Double y = Double.valueOf(EDbrewed.getText().toString()) * BrewedCoffee;
-                        total = x + y;
-                        txtTotal.setText("R" + Double.toString(total));
-                    }
-
-                    if (chkBottomless.isChecked() && chkCappucinno.isChecked()) {
-                        Double x = Double.valueOf(EDbottomless.getText().toString()) * BottomlessCoffee;
-                        Double y = Double.valueOf(EDcappucinno.getText().toString()) * Cuppucinno;
-                        total = x + y;
-                        txtTotal.setText("R" + Double.toString(total));
+           btnTotal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
-                        //checkBox for Brewed Coffee
-                    }
-                    if (chkBrewed.isChecked()) {
-                        total = Double.parseDouble(EDbrewed.getText().toString());
-                        txtTotal.setText("R" + Double.toString(total * BrewedCoffee));
+                   if(chkIced.isChecked())
+                   {
+                       quan= Integer.parseInt(EDiced.getText().toString());
+                        toppingIced=editIced.getText().toString();
 
-                        if (chkBrewed.isChecked() && chkBottomless.isChecked()) {
-                            Double x = Double.valueOf(EDbrewed.getText().toString()) * BrewedCoffee;
-                            Double y = Double.valueOf(EDbottomless.getText().toString()) * BottomlessCoffee;
-                            total = x + y;
-                            txtTotal.setText("R" + Double.toString(total));
-                        }
 
-                        if (chkBrewed.isChecked() && chkCappucinno.isChecked()) {
-                            Double x = Double.valueOf(EDbrewed.getText().toString()) * BrewedCoffee;
-                            Double y = Double.valueOf(EDcappucinno.getText().toString()) * Cuppucinno;
-                            total = x + y;
-                            txtTotal.setText("R" + Double.toString(total));
+                        if(toppingIced.equals(""))
+                        {
+                            iceddetails=""+quan+" Iced Coffee";
+
+                        }else
+                        {
+                            iceddetails=" "+quan+" Iced Coffee"+" with "+toppingIced;
 
                         }
-                        // if all checkboxes are checked
-                        if (chkCappucinno.isChecked() && chkIced.isChecked() && chkBottomless.isChecked() && chkBrewed.isChecked()) {
-                            double w = Double.valueOf(EDiced.getText().toString()) * IcedCoffee;
-                            Double x = Double.valueOf(EDbrewed.getText().toString()) * BrewedCoffee;
-                            Double y = Double.valueOf(EDcappucinno.getText().toString()) * Cuppucinno;
-                            Double z = Double.valueOf(EDbottomless.getText().toString()) * BottomlessCoffee;
-                            total = w + x + y + z;
-                            txtTotal.setText("R" + Double.toString(total));
-                        }
 
-                    }
+                       double res=IcedCoffee*quan;
+
+                       totalAMT+=Double.parseDouble(String.valueOf(res));
+                       txtTotal.setText("R"+ totalAMT);
+
+                   }else {
+                       iceddetails = "";
+
+                   }
+                   if(chkCappucinno.isChecked()) {
+                       quan = Integer.parseInt(EDcappucinno.getText().toString());
+                       toppingCuppucinno = editCuppuccino.getText().toString();
+
+                       if (toppingCuppucinno.equals("")) {
+                           CappucinnoDetails = " " + quan + " Cappucinno";
+                       } else
+
+                       {
+                           CappucinnoDetails = "" + quan + " Cappucinno" + "with " + toppingCuppucinno;
+
+                           totalAMT += Double.parseDouble(String.valueOf(Cuppucinno * quan));
+
+
+                       }
+                   }else{
+                       CappucinnoDetails = "";
+                   }
+
+                   if(chkBottomless.isChecked()) {
+                       quan = Integer.parseInt(EDbottomless.getText().toString());
+                       toppingBottomless = editBottomless.getText().toString();
+
+                       if (toppingBottomless.equals("")) {
+                           BottomlessDetails = " " + quan + " Bottomless";
+                       } else
+
+                       {
+                           BottomlessDetails = " " + quan + " Bottomless" + "with " + toppingBottomless;
+
+
+                           totalAMT += Double.parseDouble(String.valueOf(BottomlessCoffee * quan));
+
+
+                       }
+                   }else{
+                       BottomlessDetails = "";
+                   }
+
+                   if(chkBrewed.isChecked()) {
+                       quan = Integer.parseInt(EDbrewed.getText().toString());
+                       toppingBrewed = editBrewed.getText().toString();
+
+                       if (toppingBrewed.equals("")) {
+                           BrewedDetails = " " + quan + " Brewed";
+                       } else {
+                           BrewedDetails = "" + quan + " Brewed Coffee" + "with " + toppingBrewed;
+                           totalAMT += Double.parseDouble(String.valueOf(BrewedCoffee * quan));
+                       }
+                   }else {
+                       BrewedDetails = "";
+                   }
+
+
+
+                    txtTotal.setText("R"+ String.valueOf(totalAMT));
+
+
+                    //  convert Double into a String
+
+                    String data= String.valueOf(totalAMT);
+
+                    // moving from one activity to second Activity
+                    Intent intent = new Intent(MainActivity.this,Main2Activity.class);
+
+                    // put data of type String inside a Constant DATA
+                    intent.putExtra(DATA,data);
+                    intent.putExtra(ICEDDETAILS,iceddetails);
+                    intent.putExtra(CUPPUCINNODETAILS,CappucinnoDetails);
+                    intent.putExtra(BOTTOMLESSDETAILS,BottomlessDetails);
+                    intent.putExtra(BREWEDDETAILS,BrewedDetails);
+
+
+
+
+                    startActivity(intent);
+
+                    iceddetails="";
+                    CappucinnoDetails="";
+                    BottomlessDetails="";
+                    BrewedDetails="";
+                    totalAMT=0.0;
+                    quan=0;
+
                 }
+            });
 
-
-            }
-        });
 
         chkIced.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,17 +265,30 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        btnClear.setOnClickListener(new View.OnClickListener() {
+
+        btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (btnClear.isClickable()) {
-                    txtTotal.setText("");
+                finish();
 
-                }
 
             }
+
         });
     }
+
+    @Override
+    public void onClick(View v) {
+       if(v.getId()==R.id.total){
+
+
+
+
+        }
+
+    }
 }
+
+
 
 

@@ -25,9 +25,10 @@
         android:text="Iced Coffee"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        android:layout_above="@+id/editText5"
-        android:layout_alignRight="@+id/checkBox2"
-        android:layout_alignEnd="@+id/checkBox2"/>
+        android:layout_marginTop="44dp"
+        android:layout_below="@+id/textView12"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <CheckBox
         android:id="@+id/checkBox2"
@@ -66,44 +67,39 @@
 
     <Button
         android:id="@+id/total"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TOTAL"
+        android:text="ORDER"
         android:fontFamily="cursive"
         android:textColor="#DC143C"
         android:background="#ffffff"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/checkBox4"
-        android:layout_alignLeft="@+id/checkBox"
-        android:layout_alignStart="@+id/checkBox"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView"/>
+        android:layout_above="@+id/exit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/coffee"
-        android:layout_marginTop="12dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginEnd="17dp"
         android:layout_below="@+id/textView8"
         android:layout_toLeftOf="@+id/textView11"
-        android:layout_toStartOf="@+id/textView11"
-        android:layout_marginRight="15dp"
-        android:layout_marginEnd="15dp"/>
+        android:layout_toStartOf="@+id/textView11"/>
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="KHANYAz COFFEE HOUSE"
+        android:text="WELCOME TO KHANYAz COFFEE HOUSE"
         android:background="#DEB887"
         android:fontFamily="cursive"
         android:textColor="#DC143C"
         android:textAlignment="center"
-        android:textSize="17sp"
-        android:layout_toRightOf="@+id/checkBox4"
-        android:layout_toEndOf="@+id/checkBox4"
-        android:layout_alignParentTop="true"/>
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
 
 
     <TextView
@@ -128,9 +124,9 @@
 
         android:textAlignment="center"
         android:textSize="17sp"
-        android:layout_above="@+id/editText1"
-        android:layout_alignLeft="@+id/checkBox"
-        android:layout_alignStart="@+id/checkBox"/>
+        android:layout_below="@+id/imageView3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/editText1"
@@ -150,7 +146,8 @@
         android:ems="3"
         android:inputType="textPersonName"
         android:text="R35.00"
-        android:layout_above="@+id/total"
+        android:layout_alignBaseline="@+id/checkBox4"
+        android:layout_alignBottom="@+id/checkBox4"
         android:layout_alignLeft="@+id/editText6"
         android:layout_alignStart="@+id/editText6"/>
 
@@ -161,7 +158,7 @@
         android:ems="3"
         android:inputType="textPersonName"
         android:text="R40.00"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/editText1"
         android:layout_alignLeft="@+id/editText1"
         android:layout_alignStart="@+id/editText1"/>
 
@@ -182,37 +179,193 @@
         android:layout_height="wrap_content"
         android:text="R0.00"
         android:textSize="20sp"
-        android:layout_alignBaseline="@+id/total"
-        android:layout_alignBottom="@+id/total"
-        android:layout_alignRight="@+id/ediText4"
-        android:layout_alignEnd="@+id/ediText4"
-        android:layout_marginRight="13dp"
-        android:layout_marginEnd="13dp"/>
-
-    <Button
-        android:id="@+id/clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CLEAR"
-        android:fontFamily="cursive"
-        android:textColor="#DC143C"
-        android:background="#ffffff"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/checkBox2"
-        android:layout_alignEnd="@+id/checkBox2"
-        android:layout_marginBottom="12dp"/>
+        android:layout_above="@+id/textView2"
+        android:layout_toLeftOf="@+id/textView10"
+        android:layout_toStartOf="@+id/textView10" />
 
     <Button
         android:id="@+id/exit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="cursive"
         android:textColor="#DC143C"
         android:background="#DEB887"
-        android:text="EXIT"
-        android:layout_alignBaseline="@+id/clear"
-        android:layout_alignBottom="@+id/clear"
+        android:text=""
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="_________________________________________________________________"
+        android:textColor="#DC143C"
+        android:layout_marginBottom="7dp"
+        android:layout_above="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TOPPINGS"
+        android:textColor="#DC143C"
+        android:fontFamily="cursive"
+        android:layout_marginBottom="23dp"
+        android:layout_above="@+id/textView6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=">>Caramel Cream"
+        android:fontFamily="cursive"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:textColor="#000000"
+
+        android:layout_above="@+id/total"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="7dp"/>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=">> Chocolate"
+        android:fontFamily="cursive"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:textColor="#000000"
+
+
+        android:layout_alignBaseline="@+id/textView6"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_toRightOf="@+id/checkBox2"
+        android:layout_toEndOf="@+id/checkBox2"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=">>Mint"
+        android:fontFamily="cursive"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="17sp"
+
+        android:layout_alignBaseline="@+id/textView7"
+        android:layout_alignBottom="@+id/textView7"
         android:layout_alignLeft="@+id/ediText4"
-        android:layout_alignStart="@+id/ediText4"/>
+        android:layout_alignStart="@+id/ediText4" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView9"
+        android:layout_toLeftOf="@+id/textView11"
+        android:layout_toStartOf="@+id/textView11"
+        android:text=">>Vanilla Cream"
+        android:fontFamily="cursive"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:layout_alignBaseline="@+id/editText1"
+        android:layout_alignBottom="@+id/editText1"
+        android:layout_toRightOf="@+id/editText1"
+        android:layout_toEndOf="@+id/editText1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toppings"
+        android:textColor="#DC143C"
+        android:layout_above="@+id/editText"
+        android:layout_alignRight="@+id/imageView3"
+        android:layout_alignEnd="@+id/imageView3"/>
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity"
+        android:textColor="#DC143C"
+        android:layout_above="@+id/editText1"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_alignStart="@+id/editText1"/>
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coffee Menu"
+        android:textColor="#DC143C"
+        android:layout_alignBaseline="@+id/textView15"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignRight="@+id/textView6"
+        android:layout_alignEnd="@+id/textView6" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:layout_below="@+id/editText6"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"/>
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"/>
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:layout_below="@+id/editText4"
+        android:layout_alignLeft="@+id/editText3"
+        android:layout_alignStart="@+id/editText3"/>
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView2"
+        android:layout_toLeftOf="@+id/textView7"
+        android:layout_toStartOf="@+id/textView7"
+        android:text="TOTAL"
+        android:textColor="#DC143C"/>
+
 
 </RelativeLayout>
